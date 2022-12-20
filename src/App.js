@@ -4,7 +4,8 @@ import { Footer } from './MyComponents/Footer';
 import { Todos } from './MyComponents/Todos';
 import React, { useEffect, useState } from 'react';
 import { AddTodo } from './MyComponents/AddTodo';
-import { BrowserRouter as Router, Switch, Route, Link, } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link, } from 'react-router-dom'
+import { About } from './MyComponents/About'
 
 function App() {
   let initItems = [];
@@ -42,20 +43,19 @@ function App() {
     <>
       <Router>
         <Header title="My Todos List" searchBar={true} />
-        <Switch>
-          <Route path='/' render={() => {
-            return (
-              <>
-                <AddTodo addTodo={addTodo} />
-                <Todos todos={todos} onDelete={onDelete} />
-              </>);
-          }}>
+        <Routes>
+          <Route exact path='/' element={
+
+            <>
+              <AddTodo addTodo={addTodo} />
+              <Todos todos={todos} onDelete={onDelete} />
+            </>
+          }>
 
           </Route>
-          <Route path='/about'>
-            <About />
+          <Route exact path='/about' component={About}>
           </Route>
-        </Switch>
+        </Routes>
 
         <Footer />
       </Router>
